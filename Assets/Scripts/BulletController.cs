@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
 public class BulletController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //Speed of Bullet
+    [SerializeField] private float _spd = 15.0f;
+
+    private void update()
     {
-        
+        //Call Bullet Method
+        BulletMovement();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void BulletMovement()
     {
-        
+        //Set bullet direction
+        Vector3 bulletVelocity = Vector3.forward * _spd;
+        //Move Bullet based on Time
+        transform.Translate(bulletVelocity * Time.deltaTime);
     }
 }

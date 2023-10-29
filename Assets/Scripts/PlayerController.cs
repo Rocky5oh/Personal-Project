@@ -4,51 +4,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float horizontal;
-    public float speed = 15.0f;
-    public float jumpingPower = 16.0f
-    private bool isFacingRight = true;
+    public float horizontalInput;
+    public float speed = 50.0f;
+    public float XRange = 73;
 
-    [SerializeField] private Rigibody rb;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    public GameObject projectilePrefab;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        if(Input.GetButtonDown("Jump") && IsGrounded())
+        //Player movement
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        //Player remain inbound
+        if(transform.position.x < -73)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            transform.position = new Vector3(-XRange, transform.position.y, transform.position.z);
         }
 
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if(transform.position.x > 73)
         {
-            rb.velocity = new Vector3(rb.velocity.y * 0.5f);
+            transform.position = new Vector3(XRange, transform.position.y, transform.position.z);
         }
-
-        Flip();
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector3(horizontal * speed, rb.velocity.y);
-    }
-
-    private bool IsGrounded() 
-    {
-        return Physics3D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-
-    private void Flip()
-    {
-        if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        //Launch bullet from player
+        if(Input.GetKey(KeyCode.Space))
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
     }
 }

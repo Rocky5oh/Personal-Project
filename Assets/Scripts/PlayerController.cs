@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject lazerPrefab;
 
+    public bool gameOver = false;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -54,7 +56,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+        }
     }
 
 }

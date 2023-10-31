@@ -4,81 +4,57 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Movement variables
+    //Movement and Inbound variables
     public float horizontalInput;
     public float speed = 50.0f;
-
-    public Rigidbody2D rb;
-    public Camera cam;
-
-    Vector2 movement;
-    Vector2 mousePos;
-
-
     public float XRange = 73;
 
-    public GameObject projectilePrefab;
-
-    //Jumping variables
-    private Rigidbody2D playerRb;
+    //Player Jumping Variables
+    private Rigidbody playerRb;
     public float jumpForce;
     public float gravityModifier;
-
     public bool isOnGround = true;
 
-    //Flipping player variable
-    public bool facingRight = true;
+    public GameObject lazerPrefab;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody2D>();
+        playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Player movement
-
-        movement.x = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         //Player remain inbound
-        if(transform.position.x < -73)
+        if (transform.position.x < -73)
         {
-            transform.position = new Vector2(-XRange, transform.position.y);
+            transform.position = new Vector3(-XRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > 73)
+        {
+            transform.position = new Vector3(XRange, transform.position.y, transform.position.z);
+        }
+        //Player Jumps
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
         }
 
-        if(transform.position.x > 73)
+        //Player Shoots
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            transform.position = new Vector2(XRange, transform.position.y);
+            Instantiate(lazerPrefab, transform.position, lazerPrefab.transform.rotation);
         }
-        //Launch bullet from player
-        if(Input.GetKey(KeyCode.Space))
-        {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-        }
-        //Player Jumping
-        if(Input.GetKeyDown(KeyCode.UpArrow) && isOnGround)
-        {
-            playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
-
-        cam.ScreenToWorldPoint(Input.mousePosition);
 
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
-    }
-
-    private void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
-
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
     }
 
 }

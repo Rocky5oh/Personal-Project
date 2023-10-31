@@ -23,13 +23,7 @@ public class DetectCollisions : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            gameManager.AddLives(-1);
-            Destroy(gameObject);
-        }
-
-        else if(other.CompareTag("Enemy"))
-        {
-            other.GetComponent<EnemyHealth>().DestroyEnemy(1);
+            
             Destroy(other.gameObject);
         }
     }

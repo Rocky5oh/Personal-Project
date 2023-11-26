@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4294342820363857919}
   - component: {fileID: 3294719629939926625}
   - component: {fileID: 4095141285417811102}
-  - component: {fileID: -8953133894146766288}
   - component: {fileID: 1308387184887143651}
   - component: {fileID: 711572487985253329}
   - component: {fileID: 6199817022476096284}
+  - component: {fileID: 2442074766471939836}
+  - component: {fileID: -5561354628746262870}
   m_Layer: 0
   m_Name: Lazer
   m_TagString: Untagged
@@ -87,18 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-8953133894146766288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275181588127267237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f0091b19c89ef439147ecdee1c8fbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1308387184887143651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -159,3 +148,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fce2c0b3080d554eb757d79961b0c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2442074766471939836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275181588127267237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7dfe295c5b87e4f9be84022909d59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
+--- !u!114 &-5561354628746262870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275181588127267237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53f00ae50686f94caad28f0b017c885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointValue: 20

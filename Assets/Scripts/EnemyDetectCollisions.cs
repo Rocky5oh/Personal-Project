@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DetectCollisions : MonoBehaviour
+public class EnemyDetectCollisions : MonoBehaviour
 {
     private GameManager gameManager;
 
@@ -19,12 +19,13 @@ public class DetectCollisions : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            
-            Destroy(other.gameObject);
+            gameManager.AddLives(-1);
+            //Destroy(other.gameObject);
+            //gameManager.GameOver();
         }
     }
 }

@@ -19,29 +19,39 @@ public class PlayerController : MonoBehaviour
 
     public bool gameOver = false;
 
+    //ChatGpt
+
+    public float moveSpeed = 5f;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 10f;
+
+    public GameManager gameManager;
+
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
-        Physics.gravity *= gravityModifier;
+       playerRb = GetComponent<Rigidbody>();
+       Physics.gravity *= gravityModifier;
     }
 
     void Update()
     {
+        playerRb = GetComponent<Rigidbody> ();
+
         //Player movement
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         //Player remain inbound
         if (transform.position.x < -73)
-        {
-            transform.position = new Vector3(-XRange, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > 73)
-        {
-            transform.position = new Vector3(XRange, transform.position.y, transform.position.z);
-        }
+         {
+             transform.position = new Vector3(-XRange, transform.position.y, transform.position.z);
+         }
+         if (transform.position.x > 73)
+         {
+             transform.position = new Vector3(XRange, transform.position.y, transform.position.z);
+         }
         //Player Jumps
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
-        {
+         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
@@ -54,17 +64,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (other.CompareTag("Enemy Lazer"))
         {
-            isOnGround = true;
-        }
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            gameOver = true;
-            Debug.Log("Game Over!");
+            gameManager.AddLives(-1);
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        isOnGround = true;
+    }
 }

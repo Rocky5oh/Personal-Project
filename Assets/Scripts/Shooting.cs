@@ -2,33 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
-    public Transform firePoint;
-    public GameObject lazerPrefab;
 
-    public float bulletForce = 150.0f;
+    private float speed = 150.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
-        {
-            Shoot();
-        }
+        transform.Translate(Vector3.right * Time.deltaTime * speed);
     }
 
-    void Shoot()
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject lazer = Instantiate(lazerPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = lazer.GetComponent<Rigidbody2D>();
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
 
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        else if (other.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

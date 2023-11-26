@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4810255523259610679}
   - component: {fileID: 6318345538595005963}
   - component: {fileID: 2060081724351001139}
-  - component: {fileID: 1270366425974084099}
+  - component: {fileID: -529820632885735881}
   m_Layer: 0
   m_Name: EnemyTypeTwo
   m_TagString: Enemy
@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c33305a71912347810ae4686ac51cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  lazerPrefab: {fileID: 2480236503362935134, guid: 58f0b10b5ec03254cbe8fc82119f55bc, type: 3}
+  speed: 10
 --- !u!114 &6318345538595005963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03459271f13d7a46b64cf82dc5b96f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1270366425974084099
+--- !u!114 &-529820632885735881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,11 +157,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3807071391912221070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fca8ee7a8558214889a1c87d223c24e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cb8231b0de03344184221094c2bc2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 7922776168324366785}
-  amountToDestroy: 20
+  enemyPrefabs: []
 --- !u!1001 &6734276124158449191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,14 +267,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091994812376417631, guid: 8b60028ab8ea91b4f8e7a4a3c389e031, type: 3}
   m_PrefabInstance: {fileID: 6734276124158449191}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7922776168324366785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3496955527504353254, guid: 8b60028ab8ea91b4f8e7a4a3c389e031, type: 3}
-  m_PrefabInstance: {fileID: 6734276124158449191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -7,10 +7,15 @@ public class LazerDetectCollision : MonoBehaviour
 
     private GameManager gameManager;
     public int pointValue;
+
+    private AudioSource destroyEnemyAudio;
+    public AudioClip explosionSound;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        destroyEnemyAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +31,7 @@ public class LazerDetectCollision : MonoBehaviour
 
             Destroy(other.gameObject);
             gameManager.UpdateScore(pointValue);
+            destroyEnemyAudio.PlayOneShot(explosionSound, 1.0f);
         }
     }
 }

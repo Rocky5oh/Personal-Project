@@ -14,7 +14,7 @@ public class LazerDetectCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         destroyEnemyAudio = GetComponent<AudioSource>();
     }
 
@@ -28,7 +28,6 @@ public class LazerDetectCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-
             Destroy(other.gameObject);
             gameManager.UpdateScore(pointValue);
             destroyEnemyAudio.PlayOneShot(explosionSound, 1.0f);

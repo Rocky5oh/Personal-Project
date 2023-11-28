@@ -15,7 +15,7 @@ public class MoveLeftCityScape : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < startPos.z -50)
+        if (transform.position.x < startPos.x -50)
         {
             transform.position = startPos;
         }

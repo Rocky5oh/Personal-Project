@@ -174,5 +174,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53f00ae50686f94caad28f0b017c885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 0
-  explosionSound: {fileID: 0}
+  pointValue: 1
+  explosionSound: {fileID: 8300000, guid: eecd384c00e1a3a4ab981746e6b01868, type: 3}

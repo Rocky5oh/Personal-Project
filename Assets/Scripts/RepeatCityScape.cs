@@ -11,13 +11,13 @@ public class RepeatCityScape : MonoBehaviour
     void Start()
     {
         startingPos = transform.position;
-        repeatLength = GetComponent<BoxCollider>().size.z / 2;
+        repeatLength = GetComponent<BoxCollider>().size.y / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < startingPos.z - repeatLength)
+        if (transform.position.y < startingPos.y - repeatLength)
         {
             transform.position = startingPos;
         }

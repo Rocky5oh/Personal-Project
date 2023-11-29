@@ -8,12 +8,6 @@ public class SpawnManager : MonoBehaviour
 
     private Rigidbody enemyRb;
 
-    private float startDelay = 2;
-    private float spawnInterval = 1.5f;
-
-    private float spawnRangeX = 77.0f;
-    private float spawnRangeZ = 0f;
-
     // Start is called before the first frame update
     void Start()
     {

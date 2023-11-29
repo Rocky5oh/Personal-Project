@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyPlayer : MonoBehaviour
 {
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {

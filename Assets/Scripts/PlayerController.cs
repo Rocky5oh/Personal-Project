@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     //Movement and Inbound variables
     public float horizontalInput;
     public float speed = 50.0f;
-    public float XRange = 73;
+    public float XRange = 68;
 
     //Player Jumping Variables
     private Rigidbody playerRb;
@@ -20,8 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public bool gameOver = false;
 
-    //ChatGpt
-
+   
     public float moveSpeed = 5f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 10f;
@@ -42,11 +41,11 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         //Player remain inbound
-        if (transform.position.x < -73)
+        if (transform.position.x < -70)
          {
              transform.position = new Vector3(-XRange, transform.position.y, transform.position.z);
          }
-         if (transform.position.x > 73)
+         if (transform.position.x > 70)
          {
              transform.position = new Vector3(XRange, transform.position.y, transform.position.z);
          }
@@ -56,13 +55,6 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
-
-        //Player Shoots
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            Instantiate(lazerPrefab, transform.position, lazerPrefab.transform.rotation);
-        }
-
     }
 
     public void OnTriggerEnter(Collider other)

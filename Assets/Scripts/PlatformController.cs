@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlatformController : MonoBehaviour
 {
     public float speed = 50.0f;
-    private float startDelay = 2;
-    private float spawnInterval = 1.5f;
 
     private Rigidbody platformRb;
 

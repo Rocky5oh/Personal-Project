@@ -29,9 +29,20 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
+    //Lives and Game Activity
+    public bool isGameActive;
+    public int lives = 3;
+
     void Start()
     {
-       playerRb = GetComponent<Rigidbody>();
+        isGameActive = true;
+        lives = 3;
+        AddLives(0);
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+
+        playerRb = GetComponent<Rigidbody>();
 
        Vector3 storePhysicsDefault = new Vector3(0, -9.81f, 0);
        Physics.gravity = storePhysicsDefault * gravityModifier;
@@ -88,5 +99,15 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isOnGround = true;
+    }
+
+    public void AddLives(int value)
+    {
+        lives += value;
+
+        if (lives <= 0)
+        {
+            anim.SetTrigger("death");
+        }
     }
 }

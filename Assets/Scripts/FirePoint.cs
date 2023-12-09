@@ -24,7 +24,6 @@ public class FirePoint : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Instantiate(lazerPrefab, transform.position, lazerPrefab.transform.rotation);
-            fireGunAudio.PlayOneShot(lazerSound, 1.0f);
         }
     }
 }

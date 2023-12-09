@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
        playerRb = GetComponent<Rigidbody>();
-       Physics.gravity *= gravityModifier;
+
+       Vector3 storePhysicsDefault = new Vector3(0, -9.81f, 0);
+       Physics.gravity = storePhysicsDefault * gravityModifier;
     }
 
     void Update()

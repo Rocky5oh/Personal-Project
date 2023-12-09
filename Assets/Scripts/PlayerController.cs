@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     public GameManager gameManager;
 
+    public Animator anim;
+
     void Start()
     {
        playerRb = GetComponent<Rigidbody>();
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         //Player movement
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        anim.SetFloat("horizontal", horizontalInput);
         //Player remain inbound
         if (transform.position.x < -70)
          {
@@ -56,6 +59,21 @@ public class PlayerController : MonoBehaviour
          {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            anim.SetBool("jump", true);
+
+        }
+         else
+        {
+            anim.SetBool("jump", false);
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            anim.SetBool("shoot", true);
+        }
+        else
+        {
+            anim.SetBool("shoot", false);
         }
     }
 

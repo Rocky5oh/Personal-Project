@@ -7,6 +7,7 @@ public class FirePoint : MonoBehaviour
     private AudioSource fireGunAudio;
     public AudioClip lazerSound;
     public GameManager gameManager;
+    public Animator anim;
 
     public GameObject lazerPrefab;
     // Start is called before the first frame update
@@ -24,6 +25,11 @@ public class FirePoint : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Instantiate(lazerPrefab, transform.position, lazerPrefab.transform.rotation);
+            anim.SetBool("shoot", true);
+        }
+        else
+        {
+            anim.SetBool("shoot", false);
         }
     }
 }

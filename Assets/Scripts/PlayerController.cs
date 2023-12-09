@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject lazerPrefab;
 
+    public ParticleSystem explosion;
+
     public bool gameOver = false;
 
    
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
 
         playerRb = GetComponent<Rigidbody>();
+
+        explosion = GetComponent<ParticleSystem>();
 
        Vector3 storePhysicsDefault = new Vector3(0, -9.81f, 0);
        Physics.gravity = storePhysicsDefault * gravityModifier;
@@ -108,6 +112,7 @@ public class PlayerController : MonoBehaviour
         if (lives <= 0)
         {
             anim.SetTrigger("death");
+            explosion.Play();
         }
     }
 }

@@ -69,6 +69,10 @@ public class PlayerController : MonoBehaviour
          {
              transform.position = new Vector3(XRange, transform.position.y, transform.position.z);
          }
+         if (transform.position.y > 45)
+        {
+            transform.position = new Vector3(transform.position.x, 45, transform.position.z);
+        }
         //Player Jumps
          if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
          {
@@ -97,6 +101,11 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy Lazer"))
         {
             gameManager.AddLives(-1);
+        }
+        if (other.CompareTag("Life"))
+        {
+            gameManager.AddLives(+1);
+            Destroy(other.gameObject);
         }
     }
 

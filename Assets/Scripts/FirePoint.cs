@@ -22,7 +22,7 @@ public class FirePoint : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Instantiate(lazerPrefab, transform.position, lazerPrefab.transform.rotation);
             anim.SetBool("shoot", true);

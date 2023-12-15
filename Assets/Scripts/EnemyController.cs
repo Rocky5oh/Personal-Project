@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject lazerPrefab;
-    private float startDelay = 1;
-    private float spawnInterval = 1.5f;
+    private float startDelay = 0.5f;
+    private float spawnInterval = 1f;
 
     public float speed = 50.0f;
 

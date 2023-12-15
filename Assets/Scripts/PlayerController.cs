@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class PlayerController : MonoBehaviour
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("death");
             explosion.Play();
+            
         }
     }
 }

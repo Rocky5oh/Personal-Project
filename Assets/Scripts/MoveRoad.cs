@@ -21,6 +21,8 @@ public class MoveRoad : MonoBehaviour
     {
         transform.Translate(Vector3.left * Time.deltaTime * speed);
 
+
+
         if(isGameActive == false)
         {
             transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Ground
   - Enemy Lazer
+  - Life
   layers:
   - Default
   - TransparentFX

@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI timeText;
     public float timeStart;
-    public Timer timerToStop;
+    bool timerActive = true;
+    public float seconds, minutes, milliseconds, hours;
     private float stopTime;
 
     public TextMeshProUGUI livesText;
+
+    public TextMeshProUGUI highScoreText;
 
     public bool isGameActive;
 
@@ -37,17 +40,29 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnEnemy());
         score = 0;
         UpdateScore(0);
-        timeText.text += timeStart.ToString("F2");
+        timeText.text = timeStart.ToString("F2");
         lives = 3;
         AddLives(0);
+        UpdateHighScoreText();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeStart += Time.deltaTime;
-        timeText.text = timeStart.ToString("F2");
+        if (timerActive)
+        {
+            hours = (int)(Time.timeSinceLevelLoad / 3600f);
+
+
+            milliseconds = (int)(Time.timeSinceLevelLoad * 1000f) % 1000;
+
+            minutes = (int)(Time.timeSinceLevelLoad / 60f) % 60;
+
+            seconds = (int)(Time.time % 60f);
+
+            timeText.text = hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + milliseconds.ToString("00");
+        }
     }
 
     public void AddLives(int value)
@@ -74,6 +89,20 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+        CheckHighScore();
+    }
+
+    void CheckHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+    }
+
+    void UpdateHighScoreText()
+    {
+        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScore", 0)}";
     }
 
     public void GameOver()
@@ -83,17 +112,20 @@ public class GameManager : MonoBehaviour
         restartButton.gameObject.SetActive(true);
     }
 
-    public void TimerStart()
-    {
-
-    }
-    public void TimerStop()
-    {
-        isGameActive=false;
-        timeStart = Time.time;
-    }
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+}
+
+public class SaveTime : MonoBehaviour
+{
+    public Text Time;
+    string _currentTime;
+    public void SetTime()
+    {
+        _currentTime = Time.text;
+        PlayerPrefs.SetString("Time", _currentTime);
+        Debug.Log("Your Time Is" + PlayerPrefs.GetString("Time"));
     }
 }

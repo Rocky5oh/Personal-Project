@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
 
     public float speed = 50.0f;
 
+
     // Start is called before the first frame update
     void Start()
     {

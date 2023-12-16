@@ -12,6 +12,7 @@ public class LazerDetectCollision : MonoBehaviour
     public AudioClip explosionSound;
 
     public ParticleSystem explosionParticle;
+    public ParticleSystem lazerEmission;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class LazerDetectCollision : MonoBehaviour
             gameManager.UpdateScore(pointValue);
             destroyEnemyAudio.PlayOneShot(explosionSound, 1.0f);
             explosionParticle.Play();
+            lazerEmission.Stop();
         }
     }
 }

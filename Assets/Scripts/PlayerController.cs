@@ -37,8 +37,9 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
-    public AudioSource death;
+    public AudioSource playerAudio;
     public AudioClip deathSound;
+    public AudioClip jumpSound;
 
     //Lives and Game Activity
     public bool isGameActive;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        death = GetComponent<AudioSource>();
+        playerAudio = GetComponent<AudioSource>();
 
 
         playerRb = GetComponent<Rigidbody>();
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
             anim.SetBool("jump", true);
             runningParticle.Stop();
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
 
         }
 
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
         if (lives <= 0)
         {
             anim.SetTrigger("death");
-            death.PlayOneShot(deathSound, 1.0f);
+            playerAudio.PlayOneShot(deathSound, 1.0f);
             ExplosionManager();
 
 

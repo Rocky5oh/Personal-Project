@@ -20,7 +20,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject lazerPrefab;
 
+    public GameObject ground;
+
     public ParticleSystem explosion;
+
+    public ParticleSystem runningParticle;
 
     public bool gameOver = false;
 
@@ -32,6 +36,9 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
 
     public Animator anim;
+
+    public AudioSource death;
+    public AudioClip deathSound;
 
     //Lives and Game Activity
     public bool isGameActive;
@@ -45,10 +52,10 @@ public class PlayerController : MonoBehaviour
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        death = GetComponent<AudioSource>();
+
 
         playerRb = GetComponent<Rigidbody>();
-
-        explosion = GetComponent<ParticleSystem>();
 
        Vector3 storePhysicsDefault = new Vector3(0, -9.81f, 0);
        Physics.gravity = storePhysicsDefault * gravityModifier;
@@ -81,8 +88,10 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             anim.SetBool("jump", true);
+            runningParticle.Stop();
 
         }
+
          else
         {
             anim.SetBool("jump", false);
@@ -103,6 +112,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy Lazer"))
         {
             gameManager.AddLives(-1);
+            explosion.Play();
         }
         if (other.CompareTag("Life"))
         {
@@ -113,7 +123,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+            runningParticle.Play();
+        }
+
     }
 
     public void AddLives(int value)
@@ -123,8 +138,19 @@ public class PlayerController : MonoBehaviour
         if (lives <= 0)
         {
             anim.SetTrigger("death");
+            death.PlayOneShot(deathSound, 1.0f);
+            ExplosionManager();
+
+
+        }
+    }
+
+    void ExplosionManager()
+    {
+        if(gameManager.isGameActive == false)
+        {
+            runningParticle.Stop();
             explosion.Play();
-            
         }
     }
 }

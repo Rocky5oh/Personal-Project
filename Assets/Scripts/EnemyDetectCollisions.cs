@@ -8,6 +8,10 @@ public class EnemyDetectCollisions : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
 
+    public ParticleSystem explosionParticle;
+
+    public AudioSource explosionSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +31,9 @@ public class EnemyDetectCollisions : MonoBehaviour
         {
             gameManager.AddLives(-1);
             playerController.AddLives(-1);
-            //Destroy(other.gameObject);
+            explosionParticle.Play();
+            Destroy(gameObject);
+            explosionSound.Play();
             //gameManager.GameOver();
         }
     }

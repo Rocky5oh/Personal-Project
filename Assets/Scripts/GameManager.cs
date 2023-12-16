@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
 
     public List<GameObject> enemies;
-    private float spawnRate = 1.0f;
+    private float spawnRate = 2.0f;
+
 
     //Lives
     private int lives = 3;
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
+        
     }
 
     public void RestartGame()

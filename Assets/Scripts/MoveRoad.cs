@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,7 +9,6 @@ public class MoveRoad : MonoBehaviour
     private float speed = 70f;
 
     public GameManager gameManager;
-    public bool isGameActive;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +19,29 @@ public class MoveRoad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * speed);
-
-
-
-        if(isGameActive == false)
+        if (gameManager.isGameActive == true)
         {
-            transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+            movingRoad();
+
+        }
+ 
+
+
+
+        if(gameManager.isGameActive == false)
+        {
+            stopRoad();
         }
 
+    }
+
+    void movingRoad()
+    {
+        transform.Translate(Vector3.left * Time.deltaTime * speed);
+    }
+
+    void stopRoad()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 }

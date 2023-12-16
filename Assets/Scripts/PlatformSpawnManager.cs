@@ -16,6 +16,8 @@ public class PlatformSpawnManager : MonoBehaviour
     public float sideSpawnMaxZ;
     public float sideSpawnX;
 
+
+
     // Start is called before the first frame update
     void Start()
     {

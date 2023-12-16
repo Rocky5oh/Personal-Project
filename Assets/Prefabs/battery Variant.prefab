@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a84f1ea5359effd4c9b77faccc71dd38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.401543
+      value: 71.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a84f1ea5359effd4c9b77faccc71dd38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a84f1ea5359effd4c9b77faccc71dd38, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.901334
+      value: -1.47538
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a84f1ea5359effd4c9b77faccc71dd38, type: 3}
       propertyPath: m_LocalRotation.w
@@ -139,7 +139,7 @@ PrefabInstance:
       addedObject: {fileID: 6461855913007506813}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a84f1ea5359effd4c9b77faccc71dd38, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5338881347847012768}
+      addedObject: {fileID: -7722441784734566879}
   m_SourcePrefab: {fileID: 100100000, guid: a84f1ea5359effd4c9b77faccc71dd38, type: 3}
 --- !u!1 &5952404679540753710 stripped
 GameObject:
@@ -5003,7 +5003,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.940321, y: 5.2863617, z: 112.32492}
   m_Center: {x: -0.9125681, y: -1.1140118, z: 8.284843}
---- !u!114 &5338881347847012768
+--- !u!114 &-7722441784734566879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5012,6 +5012,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5952404679540753710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fce2c0b3080d554eb757d79961b0c81, type: 3}
+  m_Script: {fileID: 11500000, guid: 28b0258d215f24143a67146a15792f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
